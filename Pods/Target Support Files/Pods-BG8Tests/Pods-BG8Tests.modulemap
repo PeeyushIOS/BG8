@@ -1,0 +1,6 @@
+framework module Pods_BG8Tests {
+  umbrella header "Pods-BG8Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

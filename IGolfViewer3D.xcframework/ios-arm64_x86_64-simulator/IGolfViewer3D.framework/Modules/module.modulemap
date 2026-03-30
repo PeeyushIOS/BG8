@@ -1,0 +1,11 @@
+framework module IGolfViewer3D {
+  umbrella header "IGolfViewer3D.h"
+  export *
+
+  module * { export * }
+}
+
+module IGolfViewer3D.Swift {
+  header "IGolfViewer3D-Swift.h"
+  requires objc
+}

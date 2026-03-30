@@ -1,0 +1,201 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
+// swift-module-flags: -target arm64-apple-ios13 -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -module-name IGolfViewer3D
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
+import CoreLocation
+import Foundation
+@_exported import IGolfViewer3D
+import Swift
+import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum FlyoverState {
+  case none
+  case running
+  case paused
+  public static func == (a: IGolfViewer3D.FlyoverState, b: IGolfViewer3D.FlyoverState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct CourseRenderViewRepresentable : SwiftUI.UIViewRepresentable {
+  @_Concurrency.MainActor @preconcurrency public var loader: IGolfViewer3D.CourseRenderViewLoader?
+  @_Concurrency.MainActor @preconcurrency public var config: IGolfViewer3D.CourseRenderViewConfig?
+  @_Concurrency.MainActor @preconcurrency public var currentLocation: _LocationEssentials.CLLocation?
+  @_Concurrency.MainActor @preconcurrency public var currentHole: Swift.Int
+  @_Concurrency.MainActor @preconcurrency public var navigationMode: IGolfViewer3D.NavigationMode
+  @_Concurrency.MainActor @preconcurrency public var flyoverState: IGolfViewer3D.FlyoverState
+  @_Concurrency.MainActor @preconcurrency public var measurementSystem: IGolfViewer3D.MeasurementSystem
+  @_Concurrency.MainActor @preconcurrency public var draw3DCentralLine: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var userLocationVisible: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var autoAdvanceActive: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var showCalloutOverlay: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var drawDogLegMarker: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var drawCentralPathMarkers: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var frontBackMarkersDynamic: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var rotateHoleOnLocationChanged: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var autoZoomActive: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var sendFlagLocations: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var heatmapsEnabled: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var autoGreenView: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var calloutsDrawMode: IGolfViewer3D.CalloutsDrawMode
+  @_Concurrency.MainActor @preconcurrency public var delegate: (any IGolfViewer3D.CourseRenderViewDelegate)?
+  @_Concurrency.MainActor @preconcurrency public var dataSource: (any IGolfViewer3D.CourseRenderViewDataSource)?
+  @_Concurrency.MainActor @preconcurrency public var onFlyoverFinished: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onFlyoverShouldReset: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onNavigationModeChanged: ((IGolfViewer3D.NavigationMode) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onCourseDataLoaded: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onHoleDataLoaded: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onFlagScreenPointUpdated: ((CoreFoundation.CGPoint) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onTapAtLocation: ((_LocationEssentials.CLLocation) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onCurrentHoleUpdated: ((Swift.Int) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onDistancesUpdated: ((Swift.Double, Swift.Double, Swift.Double) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public var onError: ((any Swift.Error) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency public func makeCoordinator() -> IGolfViewer3D.CourseRenderViewRepresentable.Coordinator
+  @_Concurrency.MainActor @preconcurrency public func makeUIView(context: IGolfViewer3D.CourseRenderViewRepresentable.Context) -> IGolfViewer3D.CourseRenderView
+  @_Concurrency.MainActor @preconcurrency public func updateUIView(_ uiView: IGolfViewer3D.CourseRenderView, context: IGolfViewer3D.CourseRenderViewRepresentable.Context)
+  @_Concurrency.MainActor @preconcurrency public static func dismantleUIView(_ uiView: IGolfViewer3D.CourseRenderView, coordinator: IGolfViewer3D.CourseRenderViewRepresentable.Coordinator)
+  @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor public class Coordinator : ObjectiveC.NSObject, @_Concurrency.MainActor IGolfViewer3D.CourseRenderViewDelegate, @_Concurrency.MainActor IGolfViewer3D.CourseRenderViewDataSource {
+    @_Concurrency.MainActor @objc public func courseRenderViewFlyoverFinished()
+    @_Concurrency.MainActor @objc public func courseRenderViewDidChange(_ navigationMode: IGolfViewer3D.NavigationMode)
+    @_Concurrency.MainActor @objc public func courseRenderViewDidLoadCourseData()
+    @_Concurrency.MainActor @objc public func courseRenderViewDidLoadHoleData()
+    @_Concurrency.MainActor @objc public func courseRenderViewDidUpdateFlagScreenPoint(_ point: CoreFoundation.CGPoint)
+    @_Concurrency.MainActor @objc public func courseRenderViewDidReceiveTap(at location: _LocationEssentials.CLLocation)
+    @_Concurrency.MainActor @objc public func courseRenderViewDidUpdateCurrentHole(_ currentHole: Swift.UInt)
+    @_Concurrency.MainActor @objc public func courseRenderViewDidUpdateDistances(toFrontGreen frontGreen: Swift.Double, toCenterGreen centerGreen: Swift.Double, toBackGreen backGreen: Swift.Double)
+    @_Concurrency.MainActor @objc public func courseRenderViewDidFailWithError(_ error: any Swift.Error)
+    @_Concurrency.MainActor @objc public func renderViewShapes(forHole hole: Swift.UInt) -> [IGolfViewer3D.V3DShape]
+    @objc deinit
+  }
+  public typealias Body = Swift.Never
+  public typealias UIViewType = IGolfViewer3D.CourseRenderView
+}
+extension IGolfViewer3D.CourseRenderViewRepresentable {
+  @_Concurrency.MainActor @preconcurrency public init(loader: IGolfViewer3D.CourseRenderViewLoader)
+  @_Concurrency.MainActor @preconcurrency public init(config: IGolfViewer3D.CourseRenderViewConfig)
+}
+extension IGolfViewer3D.CourseRenderViewRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func currentLocation(_ location: _LocationEssentials.CLLocation?) -> IGolfViewer3D.CourseRenderViewRepresentable
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func sendFlagLocations(_ enable: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func currentHole(_ hole: Swift.Int) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func navigationMode(_ mode: IGolfViewer3D.NavigationMode) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func autoGreenView(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func calloutsDrawMode(_ mode: IGolfViewer3D.CalloutsDrawMode) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func flyoverState(_ state: IGolfViewer3D.FlyoverState) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func measurementSystem(_ system: IGolfViewer3D.MeasurementSystem) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func draw3DCentralLine(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func drawDogLegMarker(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func autoZoomActive(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func drawCentralPathMarkers(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func frontBackMarkersDynamic(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func rotateHoleOnLocationChanged(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func showCalloutOverlay(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func showHeatmaps(_ enabled: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func userLocationVisible(_ visible: Swift.Bool) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onCourseDataLoaded(_ action: @escaping () -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onHoleDataLoaded(_ action: @escaping () -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onFlyoverFinished(_ action: @escaping () -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onFlyoverShouldReset(_ action: @escaping () -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onNavigationModeChanged(_ action: @escaping (IGolfViewer3D.NavigationMode) -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onFlagScreenPointUpdated(_ action: @escaping (CoreFoundation.CGPoint) -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onTapAtLocation(_ action: @escaping (_LocationEssentials.CLLocation) -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onCurrentHoleUpdated(_ action: @escaping (Swift.Int) -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onDistancesUpdated(_ action: @escaping (Swift.Double, Swift.Double, Swift.Double) -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+  @_Concurrency.MainActor @preconcurrency public func onError(_ action: @escaping (any Swift.Error) -> Swift.Void) -> IGolfViewer3D.CourseRenderViewRepresentable
+}
+public struct CourseRenderViewConfig {
+  public let courseId: Swift.String
+  public let apiKey: Swift.String
+  public let secretKey: Swift.String
+  public let vectorDetails: [Swift.AnyHashable : Any]
+  public let courseGpsDetails: [Swift.AnyHashable : Any]
+  public let scorecardDetails: [Swift.AnyHashable : Any]
+  public let elevationsData: [Swift.AnyHashable : Any]?
+  public let coursePinPositions: [Swift.AnyHashable : Any]?
+  public let hole: Swift.Int
+  public let navigationMode: IGolfViewer3D.NavigationMode
+  public let calloutsDrawMode: IGolfViewer3D.CalloutsDrawMode
+  public let showCalloutsOverlay: Swift.Bool
+  public let viewerUnits: IGolfViewer3D.MeasurementSystem
+  public let textureQuality: IGolfViewer3D.TextureQuality
+  public let drawDogLegMarker: Swift.Bool
+  public let drawCentralPathMarkers: Swift.Bool
+  public let frontBackMarkersDynamic: Swift.Bool
+  public let rotateHoleOnLocationChanged: Swift.Bool
+  public let autoAdvanceActive: Swift.Bool
+  public let draw3dCentralLine: Swift.Bool
+  public let userLocationVisible: Swift.Bool
+  public let autoGreenView: Swift.Bool
+  public let heatmaps: [IGolfViewer3D.HeatmapData]?
+  public let rockParams: IGolfViewer3D.RockParams?
+  public func isEmpty() -> Swift.Bool
+  public class Builder {
+    public init()
+    @discardableResult
+    public func courseId(_ value: Swift.String) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func apiKey(_ value: Swift.String) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func secretKey(_ value: Swift.String) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func showCalloutsOverlay(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func vectorDetails(_ value: [Swift.AnyHashable : Any]) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func courseGpsDetails(_ value: [Swift.AnyHashable : Any]) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func scorecardDetails(_ value: [Swift.AnyHashable : Any]) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    #if compiler(>=5.3) && $NonescapableTypes
+    @discardableResult
+    public func elevationsData(_ value: [Swift.AnyHashable : Any]?) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    @discardableResult
+    public func coursePinPositions(_ value: [Swift.AnyHashable : Any]?) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    #endif
+    @discardableResult
+    public func hole(_ value: Swift.Int) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func navigationMode(_ value: IGolfViewer3D.NavigationMode) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func calloutsDrawMode(_ value: IGolfViewer3D.CalloutsDrawMode) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func viewerUnits(_ value: IGolfViewer3D.MeasurementSystem) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func textureQuality(_ value: IGolfViewer3D.TextureQuality) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func drawDogLegMarker(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func drawCentralPathMarkers(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func frontBackMarkersDynamic(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func rotateHoleOnLocationChanged(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func autoAdvanceActive(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    @discardableResult
+    public func userLocationVisible(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    #if compiler(>=5.3) && $NonescapableTypes
+    @discardableResult
+    public func heatmaps(_ value: [IGolfViewer3D.HeatmapData]?) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    @discardableResult
+    public func rockParams(_ value: IGolfViewer3D.RockParams?) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    #endif
+    @discardableResult
+    public func draw3dCentralLine(_ value: Swift.Bool) -> IGolfViewer3D.CourseRenderViewConfig.Builder
+    public func build() -> IGolfViewer3D.CourseRenderViewConfig
+    @objc deinit
+  }
+  public static func empty() -> IGolfViewer3D.CourseRenderViewConfig
+}
+extension IGolfViewer3D.FlyoverState : Swift.Equatable {}
+extension IGolfViewer3D.FlyoverState : Swift.Hashable {}
+extension IGolfViewer3D.CourseRenderViewRepresentable : Swift.Sendable {}
+extension IGolfViewer3D.CourseRenderViewRepresentable.Coordinator : Swift.Sendable {}
